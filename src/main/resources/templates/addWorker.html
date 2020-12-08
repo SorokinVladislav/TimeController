@@ -1,0 +1,229 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>Детали работы</title>
+    <link rel="stylesheet" href="style.css">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel=\"stylesheet\" href=\"css/style.css\">
+    <style>
+        .blocktext {
+            margin-left: auto;
+            margin-right: auto;
+            width: 6em
+        }
+        .sidenav {
+            height: 100%;
+            width: 300px;
+            position: fixed;
+            z-index: 1;
+            top: 0;
+            left: 0;
+            background-color: #111;
+            overflow-x: hidden;
+            padding-top: 20px;
+        }
+        .sidenav a {
+            padding: 6px 8px 6px 16px;
+            text-decoration: none;
+            font-size: 25px;
+            color: #818181;
+            display: block;
+        }
+        .sidenav a:hover {
+            color: #f1f1f1;
+        }
+        .main {
+            margin-left: 300px; /* Same as the width of the sidenav */
+            font-size: 28px; /* Increased text to enable scrolling */
+            padding: 0px 10px;
+        }
+
+        @media screen and (max-height: 450px) {
+            .sidenav {padding-top: 15px;}
+            .sidenav a {font-size: 18px;}
+        }
+
+        @media (min-width: 768px) {
+            .navbar-container {
+                position: sticky;
+                top: 0;
+                overflow-y: auto;
+                height: 100vh;
+            }
+            .navbar-container .navbar {
+                align-items: flex-start;
+                justify-content: flex-start;
+                flex-wrap: nowrap;
+                flex-direction: column;
+                height: 100%;
+            }
+            .navbar-container .navbar-collapse {
+                align-items: flex-start;
+            }
+            .navbar-container .nav {
+                flex-direction: column;
+                flex-wrap: nowrap;
+            }
+            .navbar-container .navbar-nav {
+                flex-direction: column !important;
+            }
+
+            .brd {
+                border: 4px double black; /* Параметры границы */
+                padding: 10px; /* Поля вокруг текста */
+            }
+
+            .textsize{
+                font-size: 0.95em;
+            }
+
+            input::placeholder {
+                font-size: 0.85em;
+            }
+
+        }
+    </style>
+</head>
+<body class="bg-dark">
+
+
+
+<div>
+    <div class="container-fluid mt-2 " >
+
+        <div class="row">
+
+            <div class="col-md-8 col-lg-2 navbar-container">
+                <!-- Вертикальное меню -->
+                <nav class="navbar navbar-expand-md navbar-light">
+                    <img class="img-fluid" src="https://sun9-4.userapi.com/impg/5YvsCGF231VhvrNLr1iPQRuoKQadt5vfE6e37Q/BHEaRMWfUVI.jpg?size=290x174&quality=96&proxy=1&sign=510de65d9613462979d19521eacc9c9c">
+
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbar">
+                        <!-- Пункты вертикального меню -->
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                                <div class="col-sm" align="center">
+
+                                    <br> <a href="/jobs"  class="btn btn-secondary btn-block">Все работы</a><br>
+                                </div>
+                            </li>
+                            <li class="nav-item">
+                                <div class="col-sm" align="center">
+                                    <a href="/closed"  class="btn btn-secondary btn-block">Закрытые работы</a><br>
+                                </div>
+                            </li>
+                            <li class="nav-item">
+                                <div class="col-sm" align="center">
+                                    <a href="/main"  class="btn btn-secondary  btn-block">Отметить работника</a><br>
+                                </div>
+                            </li>
+
+                            <li class="nav-item">
+                                <div class="col-sm" align="center">
+                                    <a href="/addworker"  class="btn btn-secondary  btn-block">Зарегистрировать работника</a><br>
+                                </div>
+                            </li>
+
+
+
+                            <form th:action="@{/batch}" method="get">
+                                <div class="input-group mb-3">
+                                    <input type="text" class="form-control" name="batch" placeholder="Введите номер серии" aria-label="Введите номер серии" aria-describedby="basic-addon2">
+                                    <div class="input-group-append">
+                                        <button class="btn bg-secondary text-white" type="submit">Поиск</button>
+                                    </div>
+                                </div>
+                            </form>
+
+                            <form th:action="@{/jobid}" method="get">
+                                <div class="input-group mb-3">
+                                    <input type="text" class="form-control h6" name="jobid" placeholder="Введите JobID" aria-label="Введите JobID" aria-describedby="basic-addon2">
+                                    <div class="input-group-append">
+                                        <button class="btn bg-secondary text-white" type="submit">Поиск</button>
+                                    </div>
+                                </div>
+                            </form>
+
+                            <form th:action="@{/jobname}" method="get">
+                                <div class="input-group mb-3">
+                                    <input type="text" class="form-control" name="jobname" placeholder="Введите JobName" aria-label="Введите JobName" aria-describedby="basic-addon2">
+                                    <div class="input-group-append">
+                                        <button class="btn bg-secondary text-white" type="submit">Поиск</button>
+                                    </div>
+                                </div>
+                            </form>
+
+
+                            <!--Логаут-->
+
+                            <form th:action="@{/logout}" method="post">
+
+                                <div class="input-group-append mt-5" align="center">
+                                    <button class="btn bg-secondary text-white align-middle" type="submit">Выход</button>
+                                </div>
+
+                            </form>
+
+
+
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+            <div class="col-md-8 col-lg-10 content-container">
+
+
+
+
+            <span th:if="${message}" th:text="${message}"></span>
+
+<div>
+
+
+    <div class="row">
+<form th:action="@{/addworker}" method="post">
+
+    <h2  class="text-light">Добавить работника:</h2>
+    <div class="form-label-group mt-3 ml-3 "  >
+        <input type="text" name="firstname" class="form-control" placeholder="Имя: " required="" autofocus="">
+
+    </div>
+
+    <div class="form-label-group mt-3 ml-3">
+        <input type="text"  name="lastname" class="form-control" placeholder="Фамилия: " required="" autofocus="">
+
+    </div>
+
+    <div class="form-label-group mt-3 ml-3">
+        <input type="number" name="uid" class="form-control" placeholder="Номер карты: " required="" autofocus="">
+
+    </div>
+
+    <div><input hidden type="submit" value="Sign In"/></div>
+</form>
+    </div>
+
+</div>
+
+
+
+
+
+                <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+                <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

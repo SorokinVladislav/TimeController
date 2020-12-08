@@ -1,0 +1,86 @@
+<div th:fragment="nav">
+    <!-- Вертикальное меню -->
+    <nav class="navbar navbar-expand-md navbar-light">
+        <img class="img-fluid" src="https://sun9-4.userapi.com/impg/5YvsCGF231VhvrNLr1iPQRuoKQadt5vfE6e37Q/BHEaRMWfUVI.jpg?size=290x174&quality=96&proxy=1&sign=510de65d9613462979d19521eacc9c9c">
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbar">
+            <!-- Пункты вертикального меню -->
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <div class="col-sm" align="center">
+
+                        <br> <a href="/jobs"  class="btn btn-secondary btn-block">Все работы</a><br>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <div class="col-sm" align="center">
+                        <a href="/closed"  class="btn btn-secondary btn-block">Закрытые работы</a><br>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <div class="col-sm" align="center">
+                        <a href="/main"  class="btn btn-secondary  btn-block">Отметить работника</a><br>
+                    </div>
+                </li>
+
+                <li class="nav-item">
+                    <div class="col-sm" align="center">
+                        <a href="/addworker"  class="btn btn-secondary  btn-block">Зарегистрировать работника</a><br>
+                    </div>
+                </li>
+
+                <li class="nav-item">
+                    <div class="col-sm" align="center">
+                        <a href="/report"  class="btn btn-secondary  btn-block">Отчёт по смене</a><br>
+                    </div>
+                </li>
+
+
+
+                <form th:action="@{/batch}" method="get">
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" name="batch" placeholder="Введите номер серии" aria-label="Введите номер серии" aria-describedby="basic-addon2">
+                        <div class="input-group-append">
+                            <button class="btn bg-secondary text-white" type="submit">Поиск</button>
+                        </div>
+                    </div>
+                </form>
+
+                <form th:action="@{/jobid}" method="get">
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control h6" name="jobid" placeholder="Введите JobID" aria-label="Введите JobID" aria-describedby="basic-addon2">
+                        <div class="input-group-append">
+                            <button class="btn bg-secondary text-white" type="submit">Поиск</button>
+                        </div>
+                    </div>
+                </form>
+
+                <form th:action="@{/jobname}" method="get">
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" name="jobname" placeholder="Введите JobName" aria-label="Введите JobName" aria-describedby="basic-addon2">
+                        <div class="input-group-append">
+                            <button class="btn bg-secondary text-white" type="submit">Поиск</button>
+                        </div>
+                    </div>
+                </form>
+
+
+                <!--Логаут-->
+
+                <form th:action="@{/logout}" method="post">
+
+                    <div class="input-group-append mt-5" align="center">
+                        <button class="btn bg-secondary text-white align-middle" type="submit">Выход</button>
+                    </div>
+
+                </form>
+
+
+
+            </ul>
+        </div>
+    </nav>
+</div>
